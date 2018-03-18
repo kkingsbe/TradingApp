@@ -27,9 +27,9 @@ public class Main extends Application {
 
     public List getKeys(){
         Scanner key = new Scanner(System.in);
-        System.out.println("API KEY:    ");
+        System.out.print("API KEY:    ");
         String BINANCE_API_KEY = key.next();
-        System.out.println("BINANCE_SECRET_KEY:    ");
+        System.out.print("BINANCE_SECRET_KEY:    ");
         String BINANCE_SECRET_KEY = key.next();
         List keys = new ArrayList();
         keys.add(BINANCE_API_KEY);
