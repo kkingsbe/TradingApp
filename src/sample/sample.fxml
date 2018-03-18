@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
-
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -10,7 +10,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<GridPane alignment="center" hgap="10" prefHeight="280.0" prefWidth="315.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sample.Controller">
+
+<GridPane fx:id="gridPane" alignment="center" hgap="10" prefHeight="280.0" prefWidth="315.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sample.Controller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -26,7 +27,7 @@
                </font>
             </Label>
             <Label fx:id="priceText" layoutX="25.0" layoutY="63.0" text="Unknown" />
-            <Button fx:id="updateButton" layoutX="85.0" layoutY="59.0" mnemonicParsing="false" onAction="#getPrice" text="Update">
+            <Button fx:id="updateButton" layoutX="180.0" layoutY="59.0" mnemonicParsing="false" onAction="#getPrice" text="Update">
                <effect>
                   <DropShadow />
                </effect>
@@ -34,6 +35,4 @@
          </children>
       </Pane>
    </children>
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-
 </GridPane>
