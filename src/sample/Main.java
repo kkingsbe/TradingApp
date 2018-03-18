@@ -2,7 +2,6 @@ package sample;
 
 import com.webcerebrium.binance.api.BinanceApi;
 import com.webcerebrium.binance.api.BinanceApiException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +20,7 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
+
     }
 
     public List getKeys(){
@@ -36,6 +36,7 @@ public class Main extends Application {
     }
     public static void main(String[] args) {
         launch(args);
+
     }
 
 }
