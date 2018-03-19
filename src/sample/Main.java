@@ -22,7 +22,7 @@ public class Main extends Application {
         primaryStage.show();
 
     }
-
+/*
     public List getKeys(){
         Scanner key = new Scanner(System.in);
         System.out.print("API KEY:    ");
@@ -34,6 +34,7 @@ public class Main extends Application {
         keys.add(BINANCE_SECRET_KEY);
         return keys;
     }
+*/
     public static void main(String[] args) {
         launch(args);
 

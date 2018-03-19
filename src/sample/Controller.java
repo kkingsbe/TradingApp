@@ -21,9 +21,9 @@ public class Controller {
     public ChoiceBox bigCoins;
     public ImageView logoImage;
     Main run = new Main();
-    List keysList = new ArrayList(run.getKeys());
-    final String BINANCE_API_KEY = keysList.get(0).toString();
-    final String BINANCE_SECRET_KEY = keysList.get(1).toString();
+    //List keysList = new ArrayList(run.getKeys());
+    //final String BINANCE_API_KEY = keysList.get(0).toString();
+    //final String BINANCE_SECRET_KEY = keysList.get(1).toString();
     public JsonArray allTrades;
     public List altcoinsList = new ArrayList();
     public List bigCoinsList = new ArrayList();
@@ -33,9 +33,21 @@ public class Controller {
 
     public void getPrice(ActionEvent actionEvent) {
         BigDecimal btcPrice = null;
-        String altCoin = altCoins.getValue().toString();
-        String bigCoin = bigCoins.getValue().toString();
-        pricePair = altCoin + bigCoin;
+
+        try {
+            String altCoin = altCoins.getValue().toString();
+            String bigCoin = bigCoins.getValue().toString();
+            pricePair = altCoin + bigCoin;
+        } catch (java.lang.NullPointerException e) {
+            System.out.println("HI");
+            priceText.setText("ERROR");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Not a Valid Pair");
+            alert.setHeaderText(null);
+            alert.setContentText("You have chosen a trading pair that is not valid.");
+            alert.showAndWait();
+        }
+
         try {
             btcPrice = new BinanceApi().pricesMap().get(pricePair);
         } catch (BinanceApiException e) {
@@ -55,6 +67,7 @@ public class Controller {
     public void initialize(){
         altcoinsList.addAll(Arrays.asList("TRX","XRP","CMT","WTC","NANO","DGD","GAS","BCC","BTM","USDT","HCC","HSR","OAX","DNT","MCO","ICN","ZRX","OMG","PIVX","LRC","LTT"));
         bigCoinsList.addAll(Arrays.asList("BTC","ETH","LTC","BNB"));
+        Collections.sort(altcoinsList);
         altCoins.getItems().addAll(altcoinsList);
         bigCoins.getItems().addAll(bigCoinsList);
     }
