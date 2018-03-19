@@ -7,6 +7,7 @@ import com.google.gson.JsonArray;
 import com.webcerebrium.binance.api.BinanceApi;
 import com.webcerebrium.binance.api.BinanceApiException;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -36,6 +37,13 @@ public class Controller {
             btcPrice = new BinanceApi().pricesMap().get(pricePair);
         } catch (BinanceApiException e) {
             e.printStackTrace();
+            priceText.setText("ERROR");
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Not a Valid Pair");
+            alert.setHeaderText(null);
+            alert.setContentText("You have chosen a trading pair that is not valid.");
+            alert.showAndWait();
         }
         String btcPriceString = btcPrice.toString();
         priceText.setText(pricePair + ":    " + btcPriceString);
