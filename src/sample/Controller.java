@@ -33,10 +33,12 @@ public class Controller {
 
     public void getPrice(ActionEvent actionEvent) {
         BigDecimal btcPrice = null;
+        String altCoin = "";
+        String bigCoin = "";
 
         try {
-            String altCoin = altCoins.getValue().toString();
-            String bigCoin = bigCoins.getValue().toString();
+            altCoin = altCoins.getValue().toString();
+            bigCoin = bigCoins.getValue().toString();
             pricePair = altCoin + bigCoin;
         } catch (java.lang.NullPointerException e) {
             System.out.println("HI");
@@ -61,7 +63,7 @@ public class Controller {
             alert.showAndWait();
         }
         String btcPriceString = btcPrice.toString();
-        priceText.setText(pricePair + ":    " + btcPriceString);
+        priceText.setText(altCoin + " / " + bigCoin + ":    " + btcPriceString);
     }
 
     public void initialize(){
