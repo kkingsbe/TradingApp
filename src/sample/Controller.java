@@ -11,12 +11,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+
 import java.math.BigDecimal;
 
 public class Controller {
     public String pricePair = "";
     public ChoiceBox altCoins;
     public ChoiceBox bigCoins;
+    public ImageView logoImage;
     Main run = new Main();
     List keysList = new ArrayList(run.getKeys());
     final String BINANCE_API_KEY = keysList.get(0).toString();
