@@ -60,7 +60,6 @@ public class Controller {
         try {
             btcPriceString = btcPrice.toString();
         } catch (java.lang.NullPointerException e){
-            System.out.println("HI");
             priceText.setText("ERROR");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Not a Valid Pair");
