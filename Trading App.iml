@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="com.webcerebrium:binance-api:1.0.9" level="project" />
     <orderEntry type="library" name="org.knowm.xchange:xchange-bitcoincharts:4.3.4" level="project" />
+    <orderEntry type="library" name="com.google.code.gson:gson:2.8.2" level="project" />
   </component>
 </module>
