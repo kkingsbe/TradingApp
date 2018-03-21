@@ -6,6 +6,7 @@ import java.util.*;
 import com.google.gson.JsonArray;
 import com.webcerebrium.binance.api.BinanceApi;
 import com.webcerebrium.binance.api.BinanceApiException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -20,10 +21,6 @@ public class Controller {
     public ChoiceBox altCoins;
     public ChoiceBox bigCoins;
     public ImageView logoImage;
-    Main run = new Main();
-    //List keysList = new ArrayList(run.getKeys());
-    //final String BINANCE_API_KEY = keysList.get(0).toString();
-    //final String BINANCE_SECRET_KEY = keysList.get(1).toString();
     public JsonArray allTrades;
     public List altcoinsList = new ArrayList();
     public List bigCoinsList = new ArrayList();
@@ -32,43 +29,10 @@ public class Controller {
     public Label priceText;
 
     public void getPrice(ActionEvent actionEvent) {
-        BigDecimal btcPrice = null;
-        String altCoin = "";
-        String bigCoin = "";
-        String btcPriceString = "";
-
-        try {
-            altCoin = altCoins.getValue().toString();
-            bigCoin = bigCoins.getValue().toString();
-            pricePair = altCoin + bigCoin;
-        } catch (java.lang.NullPointerException e) {
-            System.out.println("HI");
-            priceText.setText("ERROR");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Not a Valid Pair");
-            alert.setHeaderText(null);
-            alert.setContentText("You have chosen a trading pair that is not valid.");
-            alert.showAndWait();
-        }
-
-        try {
-            btcPrice = new BinanceApi().pricesMap().get(pricePair);
-        } catch (BinanceApiException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            btcPriceString = btcPrice.toString();
-        } catch (java.lang.NullPointerException e){
-            priceText.setText("ERROR");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Not a Valid Pair");
-            alert.setHeaderText(null);
-            alert.setContentText("You have chosen a trading pair that is not valid.");
-            alert.showAndWait();
-        }
-
-        priceText.setText(altCoin + " / " + bigCoin + ":    " + btcPriceString);
+        Runnable task = () -> runTask();
+        Thread backgroundThread = new Thread(task);
+        backgroundThread.setDaemon(true);
+        backgroundThread.start();
     }
 
     public void initialize(){
@@ -79,4 +43,60 @@ public class Controller {
         bigCoins.getItems().addAll(bigCoinsList);
     }
 
+    public void runTask() {
+        while(true){
+            BigDecimal btcPrice = null;
+            String altCoin = "";
+            String bigCoin = "";
+            String btcPriceString = "";
+
+            try {
+                altCoin = altCoins.getValue().toString();
+                bigCoin = bigCoins.getValue().toString();
+                pricePair = altCoin + bigCoin;
+            } catch (java.lang.NullPointerException e) {
+                System.out.println("HI");
+                priceText.setText("ERROR");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Not a Valid Pair");
+                alert.setHeaderText(null);
+                alert.setContentText("You have chosen a trading pair that is not valid.");
+                alert.showAndWait();
+            }
+
+            try {
+                btcPrice = new BinanceApi().pricesMap().get(pricePair);
+            } catch (BinanceApiException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                btcPriceString = btcPrice.toString();
+            } catch (java.lang.NullPointerException e){
+                priceText.setText("ERROR");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Not a Valid Pair");
+                alert.setHeaderText(null);
+                alert.setContentText("You have chosen a trading pair that is not valid.");
+                alert.showAndWait();
+            }
+            final String altCoinText = altCoin;
+            final String bigCoinText = bigCoin;
+            final String btcPriceStringText = btcPriceString;
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    priceText.setText(altCoinText + " / " + bigCoinText + ":    " + btcPriceStringText);
+                }
+            });
+            try {
+                Thread.sleep(1000);
+                System.out.println("THE THREAD IS SLEEP");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
 }
