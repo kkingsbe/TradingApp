@@ -1,9 +1,18 @@
 package sample;
 
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.webcerebrium.binance.api.BinanceApi;
 import com.webcerebrium.binance.api.BinanceApiException;
 import javafx.application.Platform;
@@ -13,9 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-
 import java.math.BigDecimal;
-
 public class Controller {
     public String pricePair = "";
     public ChoiceBox altCoins;
@@ -34,6 +41,7 @@ public class Controller {
         backgroundThread.setDaemon(true);
         backgroundThread.start();
     }
+
 
     public void initialize(){
         altcoinsList.addAll(Arrays.asList("TRX","XRP","CMT","WTC","NANO","DGD","GAS","BCC","BTM","HCC","HSR","OAX","DNT","MCO","ICN","ZRX","OMG","PIVX","LRC","LLT","YOYO","NEO","STRAT","SNGLS","BQX","KNC","SNM","FUN","LINK","XVG","CTR","SALT","MDA","IOTA","SUB","ETC","MTL","MTH","ENG"));
