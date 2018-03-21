@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.math.BigDecimal;
@@ -20,10 +21,10 @@ public class Controller {
     public String pricePair = "";
     public ChoiceBox altCoins;
     public ChoiceBox bigCoins;
-    public ImageView logoImage;
     public JsonArray allTrades;
     public List altcoinsList = new ArrayList();
     public List bigCoinsList = new ArrayList();
+    public ImageView logoImage;
 
     public Button updateButton;
     public Label priceText;
