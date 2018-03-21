@@ -44,10 +44,13 @@ public class Controller {
     }
 
     public void runTask() {
-        while(true){
+        String altCoin = altCoins.getValue().toString();
+        String bigCoin = bigCoins.getValue().toString();
+        final String altCoinFinal = altCoin;
+        final String bigCoinFinal = bigCoin;
+
+        while(altCoin == altCoinFinal && bigCoin == bigCoinFinal){
             BigDecimal btcPrice = null;
-            String altCoin = "";
-            String bigCoin = "";
             String btcPriceString = "";
 
             try {
