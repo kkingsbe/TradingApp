@@ -17,12 +17,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("CryptoClient");
         primaryStage.setScene(new Scene(root, 878, 543));
         primaryStage.show();
 
     }
-
+/*
     public List getKeys(){
         Scanner key = new Scanner(System.in);
         System.out.print("API KEY:    ");
@@ -34,6 +34,7 @@ public class Main extends Application {
         keys.add(BINANCE_SECRET_KEY);
         return keys;
     }
+*/
     public static void main(String[] args) {
         launch(args);
 
